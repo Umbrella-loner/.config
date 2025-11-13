@@ -1,0 +1,69 @@
+/* Global font setup */
+* {
+    font-family: "FiraCode Nerd Font";
+    font-size: 15px;
+    color: #ffffff;
+}
+
+window#waybar {
+    background-color: #000000;
+    border: none;
+    border-radius: 0;
+}
+
+/* Workspaces (numbers) */
+#workspaces button {
+    padding: 0 10px;
+    color: #aaaaaa;
+    background: transparent;
+    border: none;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    background-color: #222222;
+    border-radius: 6px;
+}
+
+/* Center clock (bold) */
+#clock {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0 12px;
+}
+
+/* Right-side modules */
+#battery, #network, #tray {
+    padding: 0 10px;
+}
+
+#battery.warning {
+    color: #ffcc00;
+}
+
+#battery.critical {
+    color: #ff5555;
+}
+/* Bluetooth icon styling */
+#bluetooth {
+    font-size: 20px;       /* make icon bigger */
+    padding: 0 6px;        /* tighter spacing */
+    color: #ffffff;
+}
+
+#tray > * {
+    margin: 0 4px;
+}
+#custom-cpu_temp, #custom-ram {
+    padding: 0 10px;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+#custom-cpu_temp {
+    color: #ffffff; /* light blue for temp */
+}
+
+#custom-ram {
+    color: #ffffff; /* green for RAM */
+}
