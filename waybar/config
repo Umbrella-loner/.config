@@ -1,0 +1,65 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "margin": 0,
+    "spacing": 10,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu_watts", "custom/cpu_temp", "custom/ram", "network", "tray", "bluetooth", "battery"],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "hyprctl dispatch workspace {id}"
+    },
+
+    "clock": {
+        "format": "{:%a, %b %d  %I:%M %p}",
+        "tooltip-format": "<b>{:%A, %d %B %Y}</b>\n<tt>{calendar}</tt>"
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "  {ipaddr}",
+        "format-disconnected": "  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}",
+    },
+"custom/cpu_temp": {
+    "exec": "~/.config/waybar/scripts/cpu_temp.sh",
+    "interval": 5,
+    "return-type": "json"
+},
+"cpu_watts": {
+  "exec": "~/.config/waybar/scripts/cpu_watts.sh",
+  "interval": 1,
+  "return-type": "json",
+  "tooltip": true
+},
+
+"custom/ram": {
+    "exec": "~/.config/waybar/scripts/ram_usage.sh",
+    "interval": 5,
+    "return-type": "json"
+},
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "on-click": "blueman-manager"
+    },
+"battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": "󱐋{icon} {capacity}%",
+    "format-plugged": "󰚥{icon} {capacity}%",
+    "format-icons": [
+        "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+    ],
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "tooltip-format": "Battery: {capacity}% ({time})"
+},
+}
+
+
