@@ -60,6 +60,10 @@
     },
     "tooltip-format": "Battery: {capacity}% ({time})"
 },
+"tray": {
+"icon-sizw": 22,
+"spacing": 12
+},
 }
 
 
