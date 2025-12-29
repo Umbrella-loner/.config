@@ -61,10 +61,8 @@ OFFICIAL_PACKAGES=(
     terraform
     gcc
     clang
-    gnumake
     cmake
     gdb
-    vim
     neovim
     tmux
     docker
@@ -79,9 +77,6 @@ OFFICIAL_PACKAGES=(
     tree
     less
     ripgrep
-    fd
-    bat
-    eza
     htop
     ncdu
     lsof
@@ -90,11 +85,7 @@ OFFICIAL_PACKAGES=(
     nmap
     gnu-netcat
     rsync
-    jq
-    yq
     openssh
-    fzf
-    zoxide
     tldr
     aria2
     curl
@@ -113,11 +104,12 @@ OFFICIAL_PACKAGES=(
     hyprland
     xdg-desktop-portal-hyprland
     waybar
-    rofi-wayland
+    rofi
     alacritty
     hyprpaper
     grim
     slurp
+    keyd
     
     # Audio
     pipewire
@@ -167,8 +159,6 @@ OFFICIAL_PACKAGES=(
     cliphist
     
     # Misc
-    man-db
-    man-pages
 )
 
 sudo pacman -S --needed --noconfirm "${OFFICIAL_PACKAGES[@]}" || log_warn "Some packages failed to install from official repos"
@@ -222,8 +212,6 @@ sudo systemctl enable --now tlp
 log_info "TLP enabled"
 
 # ACPI
-sudo systemctl enable --now acpid
-log_info "ACPID enabled"
 
 # SSH
 sudo systemctl enable --now sshd
@@ -287,6 +275,7 @@ EOF
 
 log_info "Zsh configured"
 
+
 # Configure Hyprland portal
 log_info "Configuring XDG portals for Hyprland..."
 mkdir -p ~/.config/xdg-desktop-portal
@@ -295,7 +284,14 @@ cat > ~/.config/xdg-desktop-portal/portals.conf << 'EOF'
 default=hyprland;gtk
 EOF
 
-# Note: Hyprland config is skipped - user has their own dotfiles
+sudo tee /etc/keyd/default.conf > /dev/null << 'EOF'
+[ids]
+*
+[main]
+# Map right Alt (AltGr) directly to left Meta/Super
+rightalt = leftmeta
+EOF
+ Note: Hyprland config is skipped - user has their own dotfiles
 
 # Optional: Clone and setup dotfiles
 log_info ""
