@@ -13,8 +13,22 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Theme
-  { "nyoom-engineering/oxocarbon.nvim" },
-  
+  {
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("tokyonight").setup({
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    })
+    vim.cmd.colorscheme("tokyonight-moon")
+  end,
+},
+
   -- File Explorer
   { "nvim-tree/nvim-tree.lua" },
   { "nvim-tree/nvim-web-devicons" },
@@ -84,8 +98,11 @@ vim.g.mapleader = " "
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Theme
 -- ─────────────────────────────────────────────────────────────────────────────
-vim.opt.background = "dark"
-vim.cmd.colorscheme("oxocarbon")
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 
 -- ─────────────────────────────────────────────────────────────────────────────
@@ -116,6 +133,10 @@ else
   })
 end
 
+--nvim-transparent
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- LSP Configuration
@@ -196,7 +217,7 @@ vim.lsp.config.clangd = {
     "--clang-tidy",
     "--header-insertion=iwyu",
     "--completion-style=detailed",
-    "--function-arg-placeholders",
+    "--function-arg-placeholders=true",
   },
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", ".git" },
