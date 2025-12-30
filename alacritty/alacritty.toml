@@ -33,3 +33,5 @@ magenta = "#FF55FF"
 cyan = "#55FFFF"
 white = "#FFFFFF"
 
+[window]
+opacity = 0.70
