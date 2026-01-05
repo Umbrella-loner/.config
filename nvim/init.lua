@@ -1,4 +1,4 @@
--- ─────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────
 -- Plugins Manager: lazy.nvim
 -- ─────────────────────────────────────────────────────────────────────────────
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -12,47 +12,77 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- Theme
-  {
-  "folke/tokyonight.nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    require("tokyonight").setup({
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    })
-    vim.cmd.colorscheme("tokyonight-moon")
-  end,
-},
 
+  -- ───────────────────────────────────────────────────────────────────────────
+  -- Themes
+  -- ───────────────────────────────────────────────────────────────────────────
+
+  -- TokyoNight
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("tokyonight").setup({
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+      })
+    end,
+  },
+
+  -- Nightfox (Carbonfox)
+  {
+    "EdenEast/nightfox.nvim",
+    priority = 1000,
+    config = function()
+      require("nightfox").setup({
+        options = {
+          transparent = true,
+        },
+      })
+      -- Default theme (change if you want)
+      vim.cmd.colorscheme("carbonfox")
+    end,
+  },
+
+  -- ───────────────────────────────────────────────────────────────────────────
   -- File Explorer
+  -- ───────────────────────────────────────────────────────────────────────────
   { "nvim-tree/nvim-tree.lua" },
   { "nvim-tree/nvim-web-devicons" },
 
+  -- ───────────────────────────────────────────────────────────────────────────
   -- Telescope
+  -- ───────────────────────────────────────────────────────────────────────────
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
-  -- Treesitter (disabled build command to avoid C compiler requirement)
-  { 
+  -- ───────────────────────────────────────────────────────────────────────────
+  -- Treesitter
+  -- ───────────────────────────────────────────────────────────────────────────
+  {
     "nvim-treesitter/nvim-treesitter",
     build = function()
-      -- Only run TSUpdate if a C compiler is available
-      if vim.fn.executable("cc") == 1 or vim.fn.executable("gcc") == 1 or vim.fn.executable("clang") == 1 then
+      if vim.fn.executable("cc") == 1
+        or vim.fn.executable("gcc") == 1
+        or vim.fn.executable("clang") == 1 then
         vim.cmd("TSUpdate")
       end
     end
   },
 
-  -- LSP Configuration
+  -- ───────────────────────────────────────────────────────────────────────────
+  -- LSP
+  -- ───────────────────────────────────────────────────────────────────────────
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim", config = true },
   { "williamboman/mason-lspconfig.nvim" },
 
+  -- ───────────────────────────────────────────────────────────────────────────
   -- Autocompletion
+  -- ───────────────────────────────────────────────────────────────────────────
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-buffer" },
@@ -60,8 +90,10 @@ require("lazy").setup({
   { "L3MON4D3/LuaSnip" },
   { "saadparwaiz1/cmp_luasnip" },
 
+  -- ───────────────────────────────────────────────────────────────────────────
   -- Autopairs
-  { 
+  -- ───────────────────────────────────────────────────────────────────────────
+  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
@@ -69,17 +101,21 @@ require("lazy").setup({
     end
   },
 
+  -- ───────────────────────────────────────────────────────────────────────────
   -- Git
+  -- ───────────────────────────────────────────────────────────────────────────
   { "lewis6991/gitsigns.nvim" },
 
+  -- ───────────────────────────────────────────────────────────────────────────
   -- Statusline
+  -- ───────────────────────────────────────────────────────────────────────────
   { "nvim-lualine/lualine.nvim" },
 
+  -- ───────────────────────────────────────────────────────────────────────────
   -- Copilot
+  -- ───────────────────────────────────────────────────────────────────────────
   { "github/copilot.vim" },
 })
--- ─────────────────────────────────────────────────────────────────────────────
-
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Basic Settings
@@ -94,9 +130,8 @@ vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
-
 -- ─────────────────────────────────────────────────────────────────────────────
--- Theme
+-- Transparency (GLOBAL)
 -- ─────────────────────────────────────────────────────────────────────────────
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -104,39 +139,25 @@ vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
+-- NvimTree transparency
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Treesitter Configuration
 -- ─────────────────────────────────────────────────────────────────────────────
-local has_compiler = vim.fn.executable("cc") == 1 or vim.fn.executable("gcc") == 1 or vim.fn.executable("clang") == 1
+local has_compiler =
+  vim.fn.executable("cc") == 1
+  or vim.fn.executable("gcc") == 1
+  or vim.fn.executable("clang") == 1
 
-if has_compiler then
-  require("nvim-treesitter.configs").setup({
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
-    auto_install = true,
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-    },
-  })
-else
-  -- Basic treesitter setup without automatic installation
-  require("nvim-treesitter.configs").setup({
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-    },
-  })
-end
-
---nvim-transparent
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+require("nvim-treesitter.configs").setup({
+  ensure_installed = has_compiler and { "c", "lua", "vim", "vimdoc", "query" } or {},
+  auto_install = has_compiler,
+  highlight = { enable = true },
+  indent = { enable = true },
+})
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- LSP Configuration
@@ -147,7 +168,6 @@ require("mason-lspconfig").setup({
   automatic_installation = true,
 })
 
--- Setup nvim-cmp for autocompletion
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
@@ -163,53 +183,17 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
   }),
-  sources = cmp.config.sources({
+  sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
-  }, {
     { name = "buffer" },
     { name = "path" },
-  }),
+  },
 })
 
--- Setup LSP capabilities for autocompletion
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- LSP keymaps and settings
-local on_attach = function(client, bufnr)
-  local opts = { buffer = bufnr, noremap = true, silent = true }
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-end
-
--- Configure clangd for C/C++ (using new Neovim 0.11+ API)
 vim.lsp.config.clangd = {
   cmd = {
     "clangd",
@@ -217,24 +201,16 @@ vim.lsp.config.clangd = {
     "--clang-tidy",
     "--header-insertion=iwyu",
     "--completion-style=detailed",
-    "--function-arg-placeholders=true",
   },
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-  root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", ".git" },
   capabilities = capabilities,
 }
 
--- Enable clangd LSP
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "c", "cpp", "objc", "objcpp", "cuda" },
   callback = function()
     vim.lsp.enable("clangd")
-    -- Apply keymaps
-    local bufnr = vim.api.nvim_get_current_buf()
-    on_attach(nil, bufnr)
   end,
 })
-
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Statusline
@@ -246,18 +222,15 @@ require("lualine").setup({
   },
 })
 
-
 -- ─────────────────────────────────────────────────────────────────────────────
--- Git signs
+-- Git Signs
 -- ─────────────────────────────────────────────────────────────────────────────
 require("gitsigns").setup()
 
-
 -- ─────────────────────────────────────────────────────────────────────────────
--- NvimTree Configuration
+-- NvimTree
 -- ─────────────────────────────────────────────────────────────────────────────
 require("nvim-tree").setup()
-
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Keymaps
