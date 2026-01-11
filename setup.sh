@@ -54,7 +54,7 @@ else
 fi
 
 # Install official repo packages
-sudo pacman -S git terraform gcc clang cmake gdb neovim tmux docker kubectl zip unzip p7zip unrar file tree less ripgrep htop ncdu lsof strace yazi nmap  rsync openssh tldr aria2 curl wget brightnessctl wl-clipboard libvirt qemu-full virt-manager dnsmasq iptables-nft hyprland xdg-desktop-portal-hyprland waybar rofi alacritty hyprpaper grim slurp keyd pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber rtkit bluez bluez-utils blueman ttf-jetbrains-mono-nerd ttf-fira-code thunar firefox vlc obs-studio blender evince networkmanager network-manager-applet acpid flatpak tlp adwaita-icon-theme swaync cliphist
+sudo pacman -S git terraform gcc sof-firmware clang cmake gdb neovim tmux docker kubectl zip unzip p7zip unrar file tree less ripgrep htop ncdu lsof strace yazi nmap  rsync openssh tldr aria2 curl wget brightnessctl wl-clipboard libvirt qemu-full virt-manager dnsmasq iptables-nft hyprland xdg-desktop-portal-hyprland waybar rofi alacritty hyprpaper grim slurp keyd pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber rtkit bluez bluez-utils blueman ttf-jetbrains-mono-nerd ttf-fira-code thunar firefox vlc obs-studio blender evince networkmanager network-manager-applet acpid flatpak tlp adwaita-icon-theme swaync cliphist
 # Install AUR packages
 log_info "Installing AUR packages..."
 AUR_PACKAGES=(
