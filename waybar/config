@@ -7,7 +7,7 @@
 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["cpu_watts", "custom/cpu_temp", "custom/ram", "network", "tray", "bluetooth", "battery"],
+"modules-right": ["cpu_watts", "custom/cpu_temp", "custom/ram", "tray", "network", "bluetooth", "battery"],
 
     "hyprland/workspaces": {
         "format": "{name}",
@@ -61,7 +61,7 @@
     "tooltip-format": "Battery: {capacity}% ({time})"
 },
 "tray": {
-"icon-sizw": 22,
+"icon-size": 22,
 "spacing": 12
 },
 }
