@@ -11,6 +11,7 @@ input {
   mouse {
     accel-speed 0.2
     accel-profile "flat"
+
   }
   focus-follows-mouse
   warp-mouse-to-focus
@@ -24,6 +25,35 @@ environment {
     GTK_THEME "Adwaita:dark"
     QT_QPA_PLATFORMTHEME "qt5ct"
 }
+animations {
+    slowdown 1.0
+    
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    
+    window-open {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    
+    window-close {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    
+    config-notification-open-close {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+}
+
+
 
 
 layout {
@@ -59,8 +89,8 @@ binds {
     Mod+E { spawn "thunar"; }
     Mod+Y { spawn "zen-browser"; }
     Mod+Q { spawn "brave" "--force-dark-mode" "--enable-features=WebUIDarkMode"; }
-    Mod+O { spawn "rofi" "-show" "drun"; }
-    
+    Mod+O { spawn "~/.config/rofi/launchers/type-2/launcher.sh"; }
+    Mod+P { spawn "protonvpn-app"; } 
     Mod+U { close-window; }
     Mod+M { quit; }
     
@@ -128,5 +158,4 @@ spawn-at-startup "hyprpaper"
 spawn-at-startup "waybar"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "nm-applet"
-spawn-at-startup "blueman-applet"
 spawn-at-startup "gammastep" "-P" "-O" "4000"
