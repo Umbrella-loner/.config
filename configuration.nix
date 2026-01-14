@@ -40,11 +40,7 @@ programs.dconf.profiles.user.databases = [{
 
 #new kernels
 boot.kernelPackages = pkgs.linuxPackages_latest;
-#hyprland block
-programs.hyprland = {
-enable = true;
-xwayland.enable = true;
-};
+
 boot.loader.systemd-boot.enable = false;
 
 boot.loader.efi = {
@@ -129,10 +125,15 @@ XDG_DATA_DIRS = [
 programs.appimage.enable = true;
 programs.appimage.binfmt = true;
 
-#xdg-portal-block
-xdg.portal = {
+#niri-session
+programs.niri = {
 enable = true;
-extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+};
+xdg-portal = {
+enable = true;
+extraPortals = [
+pkgs.xdg-desktop-portal-gtk
+];
 };
 
 #ssh-settings
@@ -300,9 +301,9 @@ packages = with pkgs; [
  fontconfig = {
  enable = true;
  defaultFonts = {
-  monospace = [ "JetBrainsMono Nerd Font"];
-   sansSerif = [ "JetBrainsMono Nerd Font" ];
-   serif = [ "JetbrainsMono Nerd Font" ];
+        monospace = [ "DejaVu Sans Mono" ];
+        sansSerif = [ "DejaVu Sans" ];
+        serif = [ "Dejavu Serif" ];
    };
    };
    };
