@@ -183,7 +183,7 @@ sudo tee /etc/keyd/default.conf > /dev/null << 'EOF'
 # Map right Alt (AltGr) directly to left Meta/Super
 rightalt = leftmeta
 EOF
- Note: Hyprland config is skipped - user has their own dotfiles
+sudo systemctl enable --now keyd 
 
 # Optional: Clone and setup dotfiles
 log_info ""
